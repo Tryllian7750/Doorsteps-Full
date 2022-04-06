@@ -1,0 +1,104 @@
+
+@using System.Runtime.InteropServices
+@using System.IO
+@using System.Diagnostics
+@using ExperimentApi.Models
+@model Experiment
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+.myform{
+  border: 2px outset black;
+  background-color: white  ;
+  text-align: center;
+  font-family: Arial;
+  
+}
+
+.myforma {
+  font-size: large;
+}
+
+
+
+</style>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Form @Html.DisplayFor(model => model.Name)</title>
+</head>
+
+
+
+    <div class="myform" >
+            <h1 class="display-4">@Html.DisplayFor(model => model.Name)</h1>
+            <p>@Html.DisplayFor(model => model.Description)</p>
+        <form asp-action="form" method="post" >
+            <input id="ExpId" name="ExpId"  type="hidden" value="@Html.DisplayFor(model => model.Id)"/>;
+            <div  class="myforma">
+                <label asp-for="Name" class="" >Your name:</label>
+                <input asp-for="Name" data-val="true"
+                    data-val-required="The Name field is required."
+                    id="Name" name="Name" value=""/>
+            </div><br />
+            <div class="myforma">
+                <label asp-for="Email">Your email:</label>
+                <input type="email" data-val="true"
+                    data-val-email="The Email Address field is not a valid email address."
+                    data-val-required="The Email Address field is required."
+                    id="Email" name="Email" value="" />
+            </div><br />
+             <div class="myforma">
+                <label asp-for="Phone">Your Phone:</label>
+                <input asp-for="Phone" data-val="true"
+                    data-val-required="The Phone field is required."
+                    id="Phone" name="Phone" value=""/>
+            </div><br />
+            @foreach (var item in Model.Questions)
+            {
+            <div class="myforma">
+                <label asp-for="Phone">@Html.DisplayFor(modelItem => item.QuestionName):</label>
+             @{   
+
+                 var name = "Quest"+@item.QuestionId;
+            switch (item.QuestionType)
+            {
+                case  "text":
+                    <input id="@name" name="@name" />;
+                break;
+
+                case  "text/multi":
+                    <textarea id="@name" name="@name"></textarea>
+                    
+                break;
+
+                case  "text/select":
+                    string[] values = item.QuestionItemList.Split(',');
+                    <select id="@name" name="@name">
+                        @foreach (string i in values)
+                        {
+                        <option value="@i">@i</option>
+                        }
+                    </select>
+                break;
+
+                default:
+                    <input asp-for="@name"  />;
+                break;
+    }}
+                
+            </div><br />
+                
+             }
+            <div>
+               <p></p>
+            <button type="submit">Submit form</button>
+             <p></p>
+        </div>
+
+        </form>
+    </div>
+
