@@ -10,15 +10,21 @@ Things that need to be done add some security to api and corrs support and a lit
 
 Api Endpoint Are
 generate the form
+
 http://localhost:5000/api/Experiment/GetExperiment/{id}
+
 show all forms
+
 http://localhost:5000/api/Experiment/GetExperiment/
-Post answers to databse
+Post answers to database
+
 http post
 http://localhost:5000/api/Experiment/AddAnswers
+
 Add New Experiment
 http post
 http://localhost:5000/api/Experiment/PostExperiment
 Enable and disable Experiment
+
 http delete
 http://localhost:5000/api/Experiment/DeleteExperiment
