@@ -31,3 +31,7 @@ Enable and disable Experiment
 http delete
 
 http://localhost:5000/api/Experiment/DeleteExperiment
+
+Display Form
+
+http://localhost:5000/form/DisplayForm/1
