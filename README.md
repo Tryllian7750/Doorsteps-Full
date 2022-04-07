@@ -30,7 +30,7 @@ http://localhost:5000/api/Experiment/PostExperiment
 Enable and disable Experiment
 http delete
 
-http://localhost:5000/api/Experiment/DeleteExperiment
+http://localhost:5000/api/Experiment/DeleteExperiment/{id}
 
 Display Form
 
